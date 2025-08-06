@@ -1,0 +1,17 @@
+{
+  "name": "js-utils",
+  "version": "1.0.0",
+  "description": "Reusable JavaScript utilities and snippets.",
+  "type": "module",
+  "main": "./invertironline/auth.js",
+  "exports": {
+    "./invertironline/auth.js": "./invertironline/auth.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hernanrago/js-utils.git"
+  },
+  "keywords": ["utilities", "auth", "invertironline"],
+  "author": "Hernán Rago",
+  "license": "MIT"
+}
