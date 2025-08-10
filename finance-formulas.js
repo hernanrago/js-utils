@@ -5,7 +5,16 @@
  * @returns {number} - Nominal Annual Rate (NAR) in decimal form.
  */
 export function calculateNominalAnnualRate(ear, periodsPerYear) {
-  if (periodsPerYear <= 0) throw new Error("Periods per year must be > 0");
+  if (typeof ear !== 'number' || isNaN(ear) || !isFinite(ear)) {
+    throw new Error("EAR must be a valid, finite number.");
+  }
+  if (ear < 0) {
+    throw new Error("EAR should not be negative.");
+  }
+  if (typeof periodsPerYear !== 'number' || !Number.isInteger(periodsPerYear) || periodsPerYear <= 0) {
+    throw new Error("Periods per year must be a positive integer.");
+  }
+  // Standard compounding formula
   return periodsPerYear * (Math.pow(1 + ear, 1 / periodsPerYear) - 1);
 }
 
