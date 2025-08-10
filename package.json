@@ -13,13 +13,17 @@
       "./invertironline/fetch-quote.js": {
         "import": "./invertironline/fetch-quote.js",
         "types": "./invertironline/fetch-quote.d.ts"
+      },
+      "./finance-formulas.js": {
+        "import": "./finance-formulas.js",
+        "types": "./finance-formulas.d.ts"
       }
     },
     "repository": {
       "type": "git",
       "url": "git+https://github.com/hernanrago/js-utils.git"
     },
-    "keywords": ["utilities", "auth", "invertironline"],
+    "keywords": ["utilities", "auth", "invertironline", "finance", "formulas", "irr", "nominal-rate"],
     "author": "Hernán Rago",
     "license": "MIT"
   }
