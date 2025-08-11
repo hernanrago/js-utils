@@ -1,10 +1,21 @@
 /**
- * Calculate Nominal Annual Rate (NAR) from Effective Annual Rate (EAR).
- * @param ear - Effective Annual Rate in decimal form (e.g., 0.80 for 80%).
- * @param periodsPerYear - Number of compounding periods per year (e.g., 12 for monthly).
- * @returns Nominal Annual Rate (NAR) in decimal form.
+ * Calculates the Nominal Annual Rate (NAR) based on start date, initial value, and current value.
+ *
+ * @param startDate - The initial date when the investment started. Can be a Date object or a date string parsable by `new Date()`.
+ * @param initialValue - The initial value or principal amount invested. Must be a positive number.
+ * @param currentValue - The current value of the investment. Must be a positive number.
+ *
+ * @returns The Nominal Annual Rate (NAR) as a decimal (e.g., 0.1 means 10% per year).
+ *
+ * @throws Will throw an error if:
+ *   - `startDate` is not before the current date.
+ *   - `initialValue` or `currentValue` are not positive numbers.
  */
-export function calculateNominalAnnualRate(ear: number, periodsPerYear: number): number;
+export function calculateNominalAnnualRate(
+  startDate: Date | string,
+  initialValue: number,
+  currentValue: number
+): number;
 
 /**
  * Calculate Internal Rate of Return (IRR) for a series of cash flows.
