@@ -37,7 +37,7 @@ export function calculateNominalAnnualRate(startDate, initialValue, currentValue
   // NAR is the simple annual nominal rate (no compounding)
   const NAR = totalReturn / years;
 
-  return NAR;
+  return Number(NAR.toFixed(4));
 }
 
 
