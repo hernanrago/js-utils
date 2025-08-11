@@ -1,22 +1,45 @@
 /**
- * Calculate Nominal Annual Rate (NAR) from Effective Annual Rate (EAR).
- * @param {number} ear - Effective Annual Rate in decimal form (e.g., 0.80 for 80%).
- * @param {number} periodsPerYear - Number of compounding periods per year (e.g., 12 for monthly).
- * @returns {number} - Nominal Annual Rate (NAR) in decimal form.
+ * Calculates the Nominal Annual Rate (NAR) based on start date, initial value, and current value.
+ *
+ * @param {Date|string} startDate - The initial date when the investment started. Can be a Date object or a date string parsable by `new Date()`.
+ * @param {number} initialValue - The initial value or principal amount invested. Must be a positive number.
+ * @param {number} currentValue - The current value of the investment. Must be a positive number.
+ *
+ * @returns {number} The Nominal Annual Rate (NAR) as a decimal (e.g., 0.1 means 10% per year).
+ *
+ * @throws Will throw an error if:
+ *   - `startDate` is not before the current date.
+ *   - `initialValue` or `currentValue` are not positive numbers.
  */
-export function calculateNominalAnnualRate(ear, periodsPerYear) {
-  if (typeof ear !== 'number' || isNaN(ear) || !isFinite(ear)) {
-    throw new Error("EAR must be a valid, finite number.");
+export function calculateNominalAnnualRate(startDate, initialValue, currentValue) {
+  if (!(startDate instanceof Date)) {
+    startDate = new Date(startDate);
   }
-  if (ear < 0) {
-    throw new Error("EAR should not be negative.");
+  if (isNaN(initialValue) || initialValue <= 0) {
+    throw new Error("initialValue must be a positive number");
   }
-  if (typeof periodsPerYear !== 'number' || !Number.isInteger(periodsPerYear) || periodsPerYear <= 0) {
-    throw new Error("Periods per year must be a positive integer.");
+  if (isNaN(currentValue) || currentValue <= 0) {
+    throw new Error("currentValue must be a positive number");
   }
-  // Standard compounding formula
-  return periodsPerYear * (Math.pow(1 + ear, 1 / periodsPerYear) - 1);
+  
+  const endDate = new Date();
+
+  const diffMs = endDate - startDate; // difference in milliseconds
+  if (diffMs <= 0) {
+    throw new Error("startDate must be before the current date");
+  }
+
+  const diffDays = diffMs / (1000 * 60 * 60 * 24);
+  const years = diffDays / 365;
+
+  const totalReturn = (currentValue / initialValue) - 1;
+
+  // NAR is the simple annual nominal rate (no compounding)
+  const NAR = totalReturn / years;
+
+  return NAR;
 }
+
 
 /**
  * Calculate Internal Rate of Return (IRR) for a series of cash flows.
